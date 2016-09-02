@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Attack Protocol</title>
+    <meta charset="utf-8" />
+    <script>
+        //declare global variables
+        var p1HP = 100;
+        var p1ATK = 100;
+        var p1DEF = 10;
+        var p1SPD = 10;
+        var p1EVA = 10;
+        var p2HP = 100;
+        var p2ATK = 100;
+        var p2DEF = 10;
+        var p2SPD = 10;
+        var p2EVA = 10;
+        var hp;
+        var atk;
+        var def;
+        var spd;
+        var eva;
+        var hit;
+        var dmg;
+        var player;
+
+        //attack protocol function
+        function attackProtocol() {
+            player = 1;
+            while (p1HP > 0 && p2HP > 0) { 
+                if (player = 1) { //set values if player 1 is attacking                    
+                    hp = p2HP;
+                    atk = p1ATK;
+                    def = p2DEF;
+                    spd = p1SPD;
+                    eva = p2EVA;
+                }
+                else {  //set values if player 2 is attacking                    
+                    hp = p1HP;
+                    atk = p2ATK;
+                    def = p1DEF;
+                    spd = p2SPD;
+                    eva = p1EVA;
+                }
+                attack();
+                damage();
+                hp = (hp - dmg);
+                alert ("Player " + player + " hits for" + dmg);
+                if (player = 1) {
+                    p2HP = hp;
+                    player ++;
+                    alert("Player 2 HP is now " + hp);
+                }
+                else {
+                    p1HP = hp;
+                    player --
+                    alert("Player 1 HP is now " + hp);
+                }
+            }
+            if (player = 2) {
+                alert("Player 1 wins!");
+            }
+            else {
+                alert("Player 2 wins!");
+            }
+            
+        }
+
+        function attack(spd,eva) {
+            var chance = ((spd / (spd + eva)) * 100); //calculate chance to attack
+            var rand = Math.floor(Math.random() * 100) + 1; // random number
+            if (rand == chance) { //critical hit
+                hit = 2;
+                alert("Critical hit!");
+            }
+            else if (rand < chance) {  //hit
+                hit = 1;
+                alert("attack hits!");
+            }
+            else {  //miss
+                hit = 0;
+                alert("Miss!");
+            }            
+            return (hit);  //return type of hit
+        }
+        function damage (atk,def,hit) {
+            dmg = ((Math.pow(atk,2) / (atk + def)));  //calculate damage of base attack
+            if (hit = 0) {
+                dmg = 0;
+            }
+            else if (hit = 2) {
+                dmg = (dmg * 2);
+            }
+            else {
+                dmg = dmg
+            }
+            return (dmg);
+        };
+        
+    </script>
+    </head>
+<body>
+    <h1>Attack Protocol Program</h1>
+    <p>Click to begin <input type="button" onclick="attackProtocol()"
+    value="Press to begin battle!"/></p>
+    <script>
+        
+    </script>
+    </body>
+</html>
