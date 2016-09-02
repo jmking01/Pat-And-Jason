@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Attack Protocol</title>
+	<meta charset="utf-8" />
+    <script>
+        var p1HP = 100, p1ATK = 100, p1DEF = 10, p1SPD = 10, p1EVA = 10;
+        var p2HP = 100, p2ATK = 100, p2DEF = 10, p2SPD = 10, p2EVA = 10
+        var hp, atk, def, spd, eva, hit, dmg, player
+        var attack = function(spd, eva){
+            var chance = ((spd/(spd+eva)) * 100);
+            atk = math.floor(math.random() * 101);
+            if (atk = chance){
+                hit = 2;
+            };
+            else if (atk > chance) {
+                hit = 1;
+            }
+            else {
+                hit = 0;
+            }
+            return (hit);
+        }
+    
+            var damage = function (atk, def, hit){
+                dmg = ((atk^2)/(atk + def));
+                if (hit = 0){
+                    dmg = 0;
+                }
+                else if (hit = 2){
+                    dmg = (dmg * 2)
+                }
+                return (dmg)
+            }
+
+    </script>
+        
+</head>
+<body>
+    <script>
+        player = 2
+        while (p1HP > 0, && p2HP > 0){
+            if (player = 1){
+                player ++;
+                hp = p1HP;
+                atk = p2HP;
+                def = p1HP;
+                spd = p2SPD;
+                eva = p1EVA;
+            }
+            else{
+                player --
+                hp = p2HP;
+                atk = p1ATK;
+                def = p2DEF;
+                spd = p1SPD;
+                eva = p2EVA;
+            }
+            attack(spd, eva);
+            damage(atk, def, hit);
+            hp = (hp - dmg);
+            console.log ("Player" + player + " hits for" dmg);
+            if (player = 1){
+                console.log ("Player 2 HP is now " + hp);
+            }
+            else {
+                console.log ("Player 1 HP is now " + hp);
+            }
+        }
+        console.log ("Player " + player + " wins!")
+    </script>
+</body>
+</html>
